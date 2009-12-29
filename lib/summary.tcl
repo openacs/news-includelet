@@ -3,7 +3,8 @@ set item_exist_p [db_0or1row one_item "
 select item_id,
        live_revision,
        publish_title,
-       html_p,
+       publish_body,
+       publish_format,
        publish_date,
        creation_user,
        item_creator
@@ -13,18 +14,6 @@ where  item_id = :item_id"]
 set creator_url [acs_community_member_url -user_id $creation_user]
 
 if { $item_exist_p } {
-
-    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
-    # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-    #
-    # RAL: publish_body is already snagged in the 1st query above for postgres.
-    # CERM: This work around is not used here, so this may not work for postgres.
-    #
-
-	set publish_body [db_string get_content "select  content
-	from    cr_revisions
-	where   revision_id = :live_revision"]
-
 
 #currently not using comments in the summary but someone might want to change the template so they are available.    
     if { [ad_parameter SolicitCommentsP "news" 0] &&
@@ -51,5 +40,5 @@ if { [string length $publish_body] > 1000 } {
     set more_link "<br><b>&raquo;</b> <a href=\"$url\">[_ news-includelet.Read_more]</a>"
 }
 
-set publish_body [ad_convert_to_html  -html_p $html_p $publish_body]
+set publish_body [ad_html_text_convert -from $publish_format -to text/html -- $publish_body]
 
