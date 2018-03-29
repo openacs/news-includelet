@@ -8,9 +8,9 @@
     <singleton-p>f</singleton-p>
 
     <version name="1.0" url="http://openacs.org/repository/download/apm/news-includelet-1.0.apm">
-        <owner url="http://opeancs.org">OpenACS</owner>
+        <owner url="http://openacs.org">OpenACS</owner>
         <release-date>2008-08-13</release-date>
-        <vendor url="http://opeancs.org">OpenACS</vendor>
+        <vendor url="http://openacs.org">OpenACS</vendor>
 
         <provides url="news-includelet" version="1.0"/>
         <requires url="layout-manager" version="1.0"/>
