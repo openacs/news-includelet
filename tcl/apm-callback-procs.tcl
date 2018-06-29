@@ -1,12 +1,12 @@
 ad_library {
 
     Forums Portlet Install library
-    
+
     Procedures that deal with installing, instantiating, mounting.
 
     @creation-date 2003-12-31
     @author Don Baccus <dhogaza@pacifier.com>
-    @cvs-id 
+    @cvs-id $Id$
 }
 
 namespace eval news_includelet::install {}
